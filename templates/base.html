@@ -1,0 +1,29 @@
+{% macro table(counties) %}
+    <table>
+      <tr>
+        <th>County</th>
+        <th>Service</th>
+        <th>%</th>
+        <th>Median %</th>
+        <th>Multiple of Median</th>
+      </tr>
+      {% for county in counties %}
+      <tr>
+        <td>{{county.county}}</td>
+        <td>{{county.name}}</td>
+        <td>{{ '{0:0.2%}'.format(county.value) }}</td>
+        <td>{{ '{0:0.2%}'.format(county.median) }}</td>
+        <td>{{ '{0:0.2f}'.format(county.multiple) }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+{%- endmacro %}
+
+<html>
+  <body>
+    <h2>Income</h2>
+    {{ table(income) }}
+    <h2>Expenditure</h2>
+    {{ table(expenditure) }}
+  </body>
+</html>
